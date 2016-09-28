@@ -1,4 +1,4 @@
-package com.akshat.displayjoke;
+package com.starksky.displayjke;
 
 import org.junit.Test;
 
