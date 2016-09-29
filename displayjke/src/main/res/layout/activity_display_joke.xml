@@ -11,8 +11,8 @@
     tools:context="com.starksky.displayjke.DisplayJoke">
 
     <TextView
+        android:id="@+id/textview_joke"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hey Joke"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

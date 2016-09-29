@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.MyClass;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.starksky.displayjke.DisplayJoke;
@@ -18,6 +17,7 @@ import com.starksky.displayjke.DisplayJoke;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+    public String joke = null;
 
     public MainActivityFragment() {
     }
@@ -26,19 +26,11 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        Button button = (Button)root.findViewById(R.id.button_joke);
+        Button button = (Button) root.findViewById(R.id.button_joke);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent(getActivity(), DisplayJoke.class);
-                MyClass jokeSource = new MyClass();
-                String joke = jokeSource.getJoke();
-                intent.putExtra(DisplayJoke.JOKE_KEY, joke);
-                startActivity(intent);*/
-
-
                 fetchJoke();
-
             }
         });
 
@@ -53,7 +45,13 @@ public class MainActivityFragment extends Fragment {
         return root;
     }
 
-    private  void fetchJoke(){
+    private void fetchJoke() {
         new EndpointsAsyncTask().execute(this);
+    }
+
+    public void launchJokeActivity() {
+        Intent intent = new Intent(getActivity(), DisplayJoke.class);
+        intent.putExtra(DisplayJoke.JOKE_KEY, joke);
+        startActivity(intent);
     }
 }

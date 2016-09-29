@@ -3,6 +3,6 @@ package com.example;
 public class MyClass {
 
     public String getJoke(){
-        return "It's a joke";
+        return "I'm the source of joke, Meet the joke teller";
     }
 }
