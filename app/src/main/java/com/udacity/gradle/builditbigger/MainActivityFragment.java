@@ -1,13 +1,17 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.MyClass;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.starksky.displayjke.DisplayJoke;
 
 
 /**
@@ -22,6 +26,21 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
+        Button button = (Button)root.findViewById(R.id.button_joke);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* Intent intent = new Intent(getActivity(), DisplayJoke.class);
+                MyClass jokeSource = new MyClass();
+                String joke = jokeSource.getJoke();
+                intent.putExtra(DisplayJoke.JOKE_KEY, joke);
+                startActivity(intent);*/
+
+
+                fetchJoke();
+
+            }
+        });
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
@@ -32,5 +51,9 @@ public class MainActivityFragment extends Fragment {
                 .build();
         mAdView.loadAd(adRequest);
         return root;
+    }
+
+    private  void fetchJoke(){
+        new EndpointsAsyncTask().execute(this);
     }
 }
