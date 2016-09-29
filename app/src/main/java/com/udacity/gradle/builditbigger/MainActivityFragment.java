@@ -18,6 +18,7 @@ import com.starksky.displayjke.DisplayJoke;
  */
 public class MainActivityFragment extends Fragment {
     public String joke = null;
+    public boolean testflag = false;
 
     public MainActivityFragment() {
     }
@@ -50,8 +51,10 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void launchJokeActivity() {
-        Intent intent = new Intent(getActivity(), DisplayJoke.class);
-        intent.putExtra(DisplayJoke.JOKE_KEY, joke);
-        startActivity(intent);
+        if (!testflag) {
+            Intent intent = new Intent(getActivity(), DisplayJoke.class);
+            intent.putExtra(DisplayJoke.JOKE_KEY, joke);
+            startActivity(intent);
+        }
     }
 }
